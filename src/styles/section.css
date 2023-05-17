@@ -1,0 +1,26 @@
+.superhost{
+    border: 2px solid #333333;
+    border-radius: 20px;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+
+}
+.card-container{
+    width: 100%;
+    gap:10px;
+    
+    
+
+
+}
+.card-items{
+    /* width: 195px; */
+}
+
+@media screen and (min-width: 768px){
+    .card-items{
+       width: 395px;
+    }    
+}

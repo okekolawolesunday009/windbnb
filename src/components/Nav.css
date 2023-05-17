@@ -1,0 +1,33 @@
+@import "../assets/colors/colors.css";
+.logo{
+    color: var(--windbnb-tertiary);
+}
+.search{
+    border-radius: 20px;
+}
+.input-land{
+    
+    border-right: 0.5px solid  #888888;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* background-color: red; */
+}
+.input-guest{
+    
+    border-right: 0.5px solid  #888888;
+    /* background-color: blue; */
+}
+
+.input{
+   
+    background: none;
+    outline: none;
+    
+    
+}
+.search-icon{
+    color:var(--windbnb-tertiary)
+}
+.stays{
+    color: var(--windbnb-secondary);
+}
