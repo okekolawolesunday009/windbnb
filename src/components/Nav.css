@@ -60,6 +60,16 @@
 .hide{
     display: hide;
 }
+.location{
+    display: none;
+}
+.active{
+    display:block;
+}
+.guest{
+    display: none;
+}
+
 
 @media screen and (min-width: 768px){
     .wider-nav{
