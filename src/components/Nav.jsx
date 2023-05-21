@@ -2,11 +2,10 @@ import React, {  useEffect, useState } from 'react'
 import Logo from './Logo';
 import "./Nav.css";
 import {  AiOutlineSearch } from 'react-icons/ai';
-import {  ImLocation2 } from 'react-icons/im';
 import {  MdCancel } from 'react-icons/md';
-import { useMatches } from 'react-router-dom';
 import styled from 'styled-components';
-import {Button}  from "./button.css.js";
+import ActiveLocation from './ActiveLocation';
+import ActiveGuest from './ActiveGuest';
 
 
 export default function Nav() {
@@ -15,11 +14,11 @@ export default function Nav() {
       site : "Helsinki, Finland",
       guest: ""
     });
-    const [isActive, setIsActive] = useState(true);
-    const handleItemOver= () =>{
-      setIsActive(true);
-      console.log("enter");
-    }
+    const [activeSubMenu, setActiveSubMenu] = useState(null);
+
+    const handleItemOver = (subMenu) => {
+      setActiveSubMenu(subMenu);
+    };
     
     const handleChange = (e) => {
       setFormsData(e.target.value);
@@ -78,13 +77,15 @@ export default function Nav() {
                      </div>
                      <div className='lg:flex lg:justify-between space-x-2 lg:w-full lg:items-center'>
                      <div className="flex flex-col lg:w-full lg:flex-row mt-5 drop-shadow bg-white rounded-lg py-2">
-                       <div  onClick={handleItemOver}
-                       className="flex flex-col border_bottom lg:flex-1">
+                       <div  
+                          onClick={() => handleItemOver('location')}
+                         className={`${activeSubMenu === "location" ? "outline rounded-sm" : ""} flex flex-col border_bottom lg:flex-1`}>
                          <label className="font-bold text-sm px-4">LOCATION</label>
                          <input className='input  h-10 w-[130px] lg:w-full text-center lg:text-xl text-sm' type="text" value="Helsinki Finland"/>
                        </div>
-                       <div  onClick={handleItemOver}
-                       className="flex flex-col lg:flex-1">
+                       <div 
+                          onClick={() => handleItemOver('guest')}
+                          className={`${activeSubMenu === "guest" ? "outline rounded-sm" : ""} flex flex-col lg:flex-1`}>
                          <label className="font-bold text-sm px-4">GUEST</label>
                          <input className='input  h-10 w-[130px] lg:w-[100%] text-center lg:text-xl text-sm' type="text" placeholder="add Guest"/>
                        </div>
@@ -106,84 +107,27 @@ export default function Nav() {
                   </div>
 
                  <div className='flex'>
-                 <div 
-                     className={`${isActive ? "active" : "guest"} guest sub-container flex flex-col lg:w-full lg:flex-row mt-5  bg-white rounded-lg py-2`}>
-                    <div 
+                
+                 
+                  <div  className={`${
+                   activeSubMenu ? 'active' : 'location'
+                  } location  sub-container flex flex-col lg:w-full lg:flex-row mt-5 px-4  bg-white rounded-lg py-2`}>
+                     {activeSubMenu === 'location' && (
+                    <ActiveLocation/>) 
+                  }
                     
-                     className={`sub-item input  h-10 w-[130px] lg:w-full  lg:text-xl text-sm`}>
-                      <div className='space-y-2'>
-                      <p className='font-bold text-base'>Adult</p>
-                      <p className='text-base'>Age 13 or above</p>
-                      <div className='flex w-autospace-x-2'>
-                      <Button className='border-2 px-1 rounded-sm' >
-                        -
-                      </Button>
-                      <input className='w-4 text-center font-bold ' value='0'/>
-                      <Button className='border-2 px-1 rounded-sm' >
-                        +
-                      </Button>
-                      </div>
+                  </div>
 
-                      
-                      </div>
-                      <div className='mt-2 space-y-2'>
-                      <p className='font-bold text-base'>Children</p>
-                      <p className='text-base'>Age 2 - 12</p>
-                      <div className='flex'>
-                      <Button className='border-2 px-1 rounded-sm' >
-                        -
-                      </Button>
-                      <input className='w-4 text-center font-bold ' value='0'/>
-                      <Button className='border-2 px-1 rounded-sm' >
-                        +
-                      </Button>
-                      </div>
-
-                      
-                      </div>
-                     
-                     
-                      </div>
-                      
-                      
-                    </div>
-                    <div 
+                  <div  className={`${
+                    activeSubMenu ? 'active' : 'guest'
+                  } sub-container flex flex-col lg:w-full lg:flex-row mt-5 px-0  bg-white rounded-lg py-2`}>
+                     {activeSubMenu === 'guest' && (
+                   <ActiveGuest/>) 
+                        }
+                   </div>
+                  
+                
                     
-                    className={`${isActive ? "active" : "location"} location  sub-container flex flex-col lg:w-full lg:flex-row mt-5  bg-white rounded-lg py-2`}>
-                    
-                      <div  
-                      
-                        className={`sub-item  input  h-10 w-[160px] lg:w-full  lg:text-xl text-sm`}>
-                      <ul className='space-y-2'>
-                        <li>
-                          <div className='flex space-x-2'>
-                            <ImLocation2/>
-                            <p className='text-base'> helsinki Finland</p>
-                           </div>
-                       </li>
-                        <li>
-                          <div className='flex space-x-2'>
-                            <ImLocation2/>
-                            <p className='text-base'> helsinki Finland</p>
-                           </div>
-                       </li>
-                        <li>
-                          <div className='flex space-x-2'>
-                            <ImLocation2/>
-                            <p className='text-base'> helsinki Finland</p>
-                           </div>
-                       </li>
-                        <li>
-                          <div className='flex space-x-2'>
-                            <ImLocation2/>
-                            <p className='text-base'> helsinki Finland</p>
-                           </div>
-                       </li>
-                        
-                       </ul>
-                      </div>
-                      
-                    </div>
                   </div>
              </div> 
               )}
