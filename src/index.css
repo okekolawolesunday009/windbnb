@@ -8,4 +8,5 @@ body{
     padding: 0;
     box-sizing: border-box;
     transition: 3s ease-in-out;
+    background-color: rgb(241, 241, 241);
 }

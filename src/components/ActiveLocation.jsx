@@ -14,7 +14,8 @@ export default function ActiveLocation({site, setFormsData}) {
 
   }
   return (
-   <div className={`sub-item  input  h-10 w-[160px] lg:w-full  lg:text-xl text-sm`}>
+   <div
+    className={`sub-item  input  h-10 w-[160px] lg:w-full  lg:text-xl text-sm`}>
        {Locations.map((location) => 
        <LocationListing 
           key = {location.id} 

@@ -1,5 +1,6 @@
 import React from 'react';
 import {  ImLocation2 } from 'react-icons/im';
+import { ListItem } from './Exports';
 
 
 export default function LocationListing({onSelect, location}) {
@@ -11,8 +12,10 @@ export default function LocationListing({onSelect, location}) {
       }
   return (
 
-   <div onClick={handleSelect}>
-              <div className='space-y-2'>
+  <ListItem
+   className='focus:bg-red-300'
+   onClick={handleSelect} >
+              <div className='space-y-4'>
                 
                   <div className='flex space-x-2'>
                     <ImLocation2/>
@@ -20,7 +23,7 @@ export default function LocationListing({onSelect, location}) {
                   </div>
               
                 </div>
-    </div>
+   </ListItem>
   
 
   )

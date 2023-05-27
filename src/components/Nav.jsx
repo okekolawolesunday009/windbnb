@@ -17,7 +17,7 @@ export default function Nav() {
         children : 0
       }
     });
-    const [activeSubMenu, setActiveSubMenu] = useState(null);
+    const [activeSubMenu, setActiveSubMenu] = useState("site");
 
     const handleItemOver = (subMenu) => {
       setActiveSubMenu(subMenu);
@@ -49,23 +49,16 @@ export default function Nav() {
       setShowNavPage(!showNavPage);
       console.log("click");
     };
-   
-    
-
-    // const handleBack = () => {
-    //  window.history.back();
-    //   console.log("back");
-    // };
-
+  
   return (
     <div  className='flex md:space-y-6 lg:justify-between lg:flex-row flex-col lg:items-center Nav'>
         <Logo/>
         <div
          onClick={handleSearchInputClick}
-          className='flex items-center lg:mx-[100px] mx-auto mt-7 lg:mt-0 bg-white  justify-between h-14 w-[290px] lg:w-[350px]  drop-shadow search'>
-          <div className="input-land">
+          className='flex items-center lg:mr-[10px] mx-auto mt-7 lg:mt-0 bg-white justify-between h-14 w-[290px] lg:w-[350px]  drop-shadow search'>
+          <div className="">
            <input 
-            className='input  h-10 w-[130px] lg:w-40 text-center lg:text-xl text-sm'
+            className='input input-land  h-10 w-[130px] lg:w-44 text-center lg:text-xl text-sm'
             type="text"
             name = 'site'
             value={formsData.site}
@@ -80,9 +73,9 @@ export default function Nav() {
             value = {formsData.guest.adult}
              placeholder='Add guest'/>
            
-           <button className='button px-4 w-20 lg:w-[60px] '>
+           <button className='button px-3 w-20 lg:w-[100px]'>
                 <div 
-                className='text-2xl md:text-xl search-icon'>< AiOutlineSearch/></div>
+                className='text-2xl  md:text-xl search-icon'>< AiOutlineSearch/></div>
            </button>
 
           
@@ -90,13 +83,15 @@ export default function Nav() {
 
        
                 {showNavPage && (
-                  <div className={` "show wider-nav p-2" `}>
+                  <div className={` "show wider-nav p-4" `}>
                   <div className='lg:flex '>
                      <div className='flex justify-between lg:hidden '>
                        <p className="font-bold text-base">Edit your search</p>
                        <div 
                        onClick={handleSearchInputClick}
-                       className='text-2xl md:text-xl lg:hidden '><MdCancel/></div> 
+                       className='text-2xl md:text-xl lg:hidden '>
+                        {showNavPage ? (<MdCancel/>) : "+"}
+                        </div> 
                      </div>
                      <div className='lg:flex lg:justify-between space-x-2 lg:w-full lg:items-center'>
                      <div className="flex flex-col lg:w-full lg:flex-row mt-5 drop-shadow bg-white rounded-lg py-2">
@@ -159,7 +154,7 @@ export default function Nav() {
                   } sub-container flex flex-col lg:w-full lg:flex-row mt-5 px-0  bg-white rounded-lg py-2`}>
                      {activeSubMenu === 'guest' && (
                         <ActiveGuest 
-                        setFormsData ={setFormsData}
+                        setFormsData = {setFormsData}
                        
                         adult={formsData.guest.adult}
                          children={formsData.guest.children}

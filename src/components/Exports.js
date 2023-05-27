@@ -10,6 +10,19 @@ import imagehouse from "../assets/image/imagehouse.jpg"
  }
     
 `;
+export const ListItem = styled.div`
+cursor:pointer;
+width: 200px;
+border-radius: 8px;
+padding: 5px;
+
+&:hover{
+    background-color: var(--windbnb-tertiary);
+    color:white;
+    
+ }
+
+`
 
 export const data = [
     {

@@ -5,13 +5,9 @@ import {Button}  from "./Exports.js";
 
 
 export default function ActiveGuest({adult, children, setFormsData}) {
-  // const [adult, setAdult] = useState(props.adult);
-  // const [children, setChildren] = useState(props.children);
-
 
   const handleIncrement = (e) => {
     if (e.target.name === 'adult') {
-      // setAdult((prevValue) => prevValue + 1);
       setFormsData((prev) => ({
         ...prev,
         guest: {
@@ -20,7 +16,6 @@ export default function ActiveGuest({adult, children, setFormsData}) {
         }
       }));
     } else if (e.target.name === 'children') {
-      // setChildren((prevValue) => prevValue + 1);
       setFormsData((prev) => ({
         ...prev,
         guest: {
@@ -28,13 +23,9 @@ export default function ActiveGuest({adult, children, setFormsData}) {
           children: prev.guest.children + 1
         }
       }));
-   
-    
     }
    
   };
-
-
 
   const handleDecrement = (e) => {
     
