@@ -12,7 +12,10 @@ export default function Nav() {
     const [showNavPage, setShowNavPage] = useState(false);
     const [formsData, setFormsData] = useState({
       site : "Helsinki, Finland",
-      guest: ""
+      guest: {
+        adult: 0,
+        children: 0
+      }
     });
     const [activeSubMenu, setActiveSubMenu] = useState(null);
 
@@ -21,14 +24,33 @@ export default function Nav() {
     };
     
     const handleChange = (e) => {
-      setFormsData(e.target.value);
-      e.preventDefault()
+   
+      if (e.target.name === 'site'){
+        setFormsData((prev) => ({
+          ...prev,
+          site: e.target.value
+        }));
+      }else if (e.target.name === 'guest'){
+        // console.log(formsData.guest.children);
+        const type = e.target.dataset.type;
+        const value = parseInt(e.target.value);
+  
+        setFormsData((prev) => ({
+          ...prev,
+          guest: {
+            ...prev.guest,
+            [type]: value >= 0 ? value : 0
+        }
+      }))
+      }
     }
   
     const handleSearchInputClick = () => {
       setShowNavPage(!showNavPage);
       console.log("click");
     };
+   
+    
 
     // const handleBack = () => {
     //  window.history.back();
@@ -36,7 +58,7 @@ export default function Nav() {
     // };
 
   return (
-    <div className='flex md:space-y-6 lg:justify-between lg:flex-row flex-col lg:items-center Nav'>
+    <div  className='flex md:space-y-6 lg:justify-between lg:flex-row flex-col lg:items-center Nav'>
         <Logo/>
         <div
          onClick={handleSearchInputClick}
@@ -45,6 +67,7 @@ export default function Nav() {
            <input 
             className='input  h-10 w-[130px] lg:w-40 text-center lg:text-xl text-sm'
             type="text"
+            name = 'site'
             value={formsData.site}
             onChange={handleChange}/>
 
@@ -53,12 +76,12 @@ export default function Nav() {
             onChange={handleChange}
             className='input input-guest h-10 w-20 lg:w-[130px] text-center lg:text-xl text-sm' 
             type='text'
-            value = {formsData.guest}
+            name = 'guest'
+            value = {formsData.guest.adult}
              placeholder='Add guest'/>
            
            <button className='button px-4 w-20 lg:w-[60px] '>
                 <div 
-               
                 className='text-2xl md:text-xl search-icon'>< AiOutlineSearch/></div>
            </button>
 
@@ -81,13 +104,23 @@ export default function Nav() {
                           onClick={() => handleItemOver('location')}
                          className={`${activeSubMenu === "location" ? "outline rounded-sm" : ""} flex flex-col border_bottom lg:flex-1`}>
                          <label className="font-bold text-sm px-4">LOCATION</label>
-                         <input className='input  h-10 w-[130px] lg:w-full text-center lg:text-xl text-sm' type="text" value="Helsinki Finland"/>
+                         <input
+                           value = {formsData.site} 
+                           name = 'site'
+                           onChange={handleChange}
+                           className='input  h-10 w-[130px] lg:w-full text-center lg:text-xl text-sm' type="text"/>
                        </div>
                        <div 
                           onClick={() => handleItemOver('guest')}
                           className={`${activeSubMenu === "guest" ? "outline rounded-sm" : ""} flex flex-col lg:flex-1`}>
                          <label className="font-bold text-sm px-4">GUEST</label>
-                         <input className='input  h-10 w-[130px] lg:w-[100%] text-center lg:text-xl text-sm' type="text" placeholder="add Guest"/>
+                         <input 
+                            value = {formsData.guest.adult + formsData.guest.children}
+                            name = 'guest'
+                            data-type="adult"
+                            placeholder="add Guest"
+                            onChange={handleChange}
+                         className='input  h-10 w-[130px] lg:w-[100%] text-center lg:text-xl text-sm' type="text" />
                        </div>
                      </div>
                      <div>
@@ -122,7 +155,13 @@ export default function Nav() {
                     activeSubMenu ? 'active' : 'guest'
                   } sub-container flex flex-col lg:w-full lg:flex-row mt-5 px-0  bg-white rounded-lg py-2`}>
                      {activeSubMenu === 'guest' && (
-                   <ActiveGuest/>) 
+                        <ActiveGuest 
+                        setFormsData ={setFormsData}
+                       
+                        adult={formsData.guest.adult}
+                         children={formsData.guest.children}
+
+                        />) 
                         }
                    </div>
                   

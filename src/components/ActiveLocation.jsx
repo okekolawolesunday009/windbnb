@@ -20,19 +20,19 @@ export default function ActiveLocation() {
                     <li>
                       <div className='flex space-x-2'>
                         <ImLocation2/>
-                        <p className='text-base'> helsinki Finland</p>
+                        <p className='text-base'> Nigeria Lagos</p>
                       </div>
                   </li>
                     <li>
                       <div className='flex space-x-2'>
                         <ImLocation2/>
-                        <p className='text-base'> helsinki Finland</p>
+                        <p className='text-base'>USA NewYork</p>
                       </div>
                   </li>
                     <li>
                       <div className='flex space-x-2'>
                         <ImLocation2/>
-                        <p className='text-base'> helsinki Finland</p>
+                        <p className='text-base'>Dubai Abudabi </p>
                       </div>
                   </li>
                     

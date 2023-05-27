@@ -10,6 +10,7 @@
 .card-container{
     width: 100%;
     gap:10px;
+    /* background-color: red; */
     
     
 
@@ -24,3 +25,11 @@
        width: 395px;
     }    
 }
+@media screen and (min-width: 1000px){
+    .card-items{
+       width: 455px;
+       flex-basis: 50%; /* Set the width to 50% to display two columns */
+       padding: 10px
+    }    
+}
+
