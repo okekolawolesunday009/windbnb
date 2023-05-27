@@ -1,44 +1,27 @@
 import React from 'react';
 import "./Nav.css";
-import {Button}  from "./button.css.js";
-import {  ImLocation2 } from 'react-icons/im';
+import {Locations}  from "./Exports.js";
+import LocationListing  from "./LocationListing";
 
 
-export default function ActiveLocation() {
+export default function ActiveLocation({site, setFormsData}) {
+  
+  function handleSelect (location) {
+    setFormsData((prev) => ({
+    ...prev,
+    site : location.name
+  }));
+
+  }
   return (
-    <div>
-        <div  
-                    
-                    className={`sub-item  input  h-10 w-[160px] lg:w-full  lg:text-xl text-sm`}>
-                  <ul className='space-y-2'>
-                    <li>
-                      <div className='flex space-x-2'>
-                        <ImLocation2/>
-                        <p className='text-base'> helsinki Finland</p>
-                      </div>
-                  </li>
-                    <li>
-                      <div className='flex space-x-2'>
-                        <ImLocation2/>
-                        <p className='text-base'> Nigeria Lagos</p>
-                      </div>
-                  </li>
-                    <li>
-                      <div className='flex space-x-2'>
-                        <ImLocation2/>
-                        <p className='text-base'>USA NewYork</p>
-                      </div>
-                  </li>
-                    <li>
-                      <div className='flex space-x-2'>
-                        <ImLocation2/>
-                        <p className='text-base'>Dubai Abudabi </p>
-                      </div>
-                  </li>
-                    
-                  </ul>
-                  </div>
-      
+   <div className={`sub-item  input  h-10 w-[160px] lg:w-full  lg:text-xl text-sm`}>
+       {Locations.map((location) => 
+       <LocationListing 
+          key = {location.id} 
+          location = {location}
+          onSelect= {() => handleSelect(location)}/>)}
+
     </div>
+    
   )
 }

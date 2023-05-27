@@ -14,7 +14,7 @@ export default function Nav() {
       site : "Helsinki, Finland",
       guest: {
         adult: 0,
-        children: 0
+        children : 0
       }
     });
     const [activeSubMenu, setActiveSubMenu] = useState(null);
@@ -24,6 +24,8 @@ export default function Nav() {
     };
     
     const handleChange = (e) => {
+      const type = e.target.dataset.type;
+      const value = parseInt(e.target.value);
    
       if (e.target.name === 'site'){
         setFormsData((prev) => ({
@@ -32,9 +34,7 @@ export default function Nav() {
         }));
       }else if (e.target.name === 'guest'){
         // console.log(formsData.guest.children);
-        const type = e.target.dataset.type;
-        const value = parseInt(e.target.value);
-  
+        
         setFormsData((prev) => ({
           ...prev,
           guest: {
@@ -146,7 +146,10 @@ export default function Nav() {
                    activeSubMenu ? 'active' : 'location'
                   } location  sub-container flex flex-col lg:w-full lg:flex-row mt-5 px-4  bg-white rounded-lg py-2`}>
                      {activeSubMenu === 'location' && (
-                    <ActiveLocation/>) 
+                    <ActiveLocation
+                    setFormsData ={setFormsData}
+                    site = {formsData.guest.site}
+                    />) 
                   }
                     
                   </div>

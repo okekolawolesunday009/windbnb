@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import "./Nav.css";
-import {Button}  from "./button.css.js";
-import {  ImLocation2 } from 'react-icons/im';
+import {Button}  from "./Exports.js";
 
 
 

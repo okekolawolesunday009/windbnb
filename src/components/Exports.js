@@ -1,4 +1,15 @@
+import styled from 'styled-components';
 import imagehouse from "../assets/image/imagehouse.jpg"
+
+
+ export const Button = styled.button`
+ border: 2px solid black;
+ border-radius: 8px;
+ &:hover{
+    background-color: var(--windbnb-tertiary);
+ }
+    
+`;
 
 export const data = [
     {
@@ -60,6 +71,31 @@ export const data = [
         stars: <img alt="star"/>,
         rating: 3.00,
         title: "Stylist apartment in center of city"
+
+    }
+];
+
+
+
+export const Locations = [
+    {
+        id: 1,
+        name: "helsinki Finland"
+
+    },
+    {
+        id: 1,
+        name: "Nigeria Lagos"
+
+    },
+    {
+        id: 1,
+        name: "USA NewYork"
+
+    },
+    {
+        id: 1,
+        name: "Dubai Abudabi "
 
     }
 ]

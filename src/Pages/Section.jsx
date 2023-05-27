@@ -1,7 +1,7 @@
 import React from 'react';
 import "../components/Nav.css";
 import CardBox from '../components/CardBox';
-import { data } from '../components/data';
+import {data}  from "../components/Exports.js";
 import "../styles/section.css"
 
 // flex card-container bg-red-500 md:flex-col lg:flex-row  flex-wrap
